@@ -10,9 +10,13 @@ See the example in the `src` folder for a basic usage of this starter kit.
 
 TODO
 add `jest`
-add `eslinter`
 add `style linter`
 add `html validator`
+
+
+# Extract Text Plugin doesn't extract style to styel.css
+
+
 
 ## Usage
 `yarn`
