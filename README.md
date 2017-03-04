@@ -1,4 +1,15 @@
-#Webpack 2
+# Intention
+
+This repository has been created in order to have a minimal FE setup for any application architecture based on web components.
+`webpack-dev-server` is loaded so that the Hot Module Reload feature is active (yeah! you can finally see what you're doing in real time).
+
+It uses Sass (with .scss). The style is loaded at each the component level.
+
+Dependencies can be handled by **Yarn**.
+
+See the example in the `src` folder for a basic usage of this starter kit.
+
+## Webpack 2
 
 `npm init -y`
 `yarn add --dev webpack`
