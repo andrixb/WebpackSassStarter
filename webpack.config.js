@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 const config = {
     entry: [
@@ -22,7 +23,7 @@ const config = {
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+                use: [ 'style-loader', 'css-loader', 'postcss-loader', 'sass-loader' ]
             }
         ]
     },
@@ -31,6 +32,8 @@ const config = {
     },
     devServer: {
         contentBase: './',
+        inline: true,
+        hot: true,
         compress: true,
         port: 8080,
         publicPath: 'http://localhost:8080/dist/',

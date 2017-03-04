@@ -4,6 +4,8 @@ import TestModule from './TestModule/TestModule';
 
 import './index.scss';
 
+var newEl = new TestModule();
+
 function component () {
   var element = document.createElement('div');
       element.setAttribute('class', 'test');
@@ -13,10 +15,6 @@ function component () {
 
   return element;
 }
-
-var newEl = new TestModule();
-
-console.log(newEl.create());
 
 document.body.appendChild(component());
 document.body.appendChild(newEl.create());

@@ -1,13 +1,22 @@
 # Intention
 
 This repository has been created in order to have a minimal FE setup for any application architecture based on web components.
-`webpack-dev-server` is loaded so that the Hot Module Reload feature is active (yeah! you can finally see what you're doing in real time).
 
 It uses Sass (with .scss). The style is loaded at each the component level.
 
 Dependencies can be handled by **Yarn**.
 
 See the example in the `src` folder for a basic usage of this starter kit.
+
+TODO
+add `jest`
+add `eslinter`
+add `style linter`
+add `html validator`
+
+## Usage
+`yarn`
+`npm start`
 
 ## Webpack 2
 
@@ -16,57 +25,71 @@ See the example in the `src` folder for a basic usage of this starter kit.
 
 created `webpack.config.js`
 
-installed in dev dep
-`babel-core`
-`babel-loader`
-`babel-preset-es2015`
-`babel-preset-react`
-`babel-preset-stage-2`,
-`webpack-dev-server`
-`serve` (for static files serving) [it may be unecessary]
-`node-sass`
-`style-loader`
-`css-loader`
-`sass-loader`
+Installed as Dev dependencies
+- `babel-core`
+- `babel-loader`
+- `babel-eslint`
+- `babel-preset-es2015`
+- `babel-preset-react`
+- `babel-preset-stage-2`,
+- `webpack-dev-server`
+- `serve` (for static files serving) [it may be unecessary]
+- `node-sass`
+- `style-loader`
+- `css-loader`
+- `postcss-loader`
+- `sass-loader`
+- `autoprefixer`
+- `eslint`
+- `eslint-plugin-import`
+
 
 
 ## Webpack 2 configuration
 ```js
-{
-    entry: [   
-        './src/index.js'  // entry point
+var path = require('path');
+var webpack = require('webpack');
+
+const config = {
+    entry: [
+        './src/index.js'
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),   // output
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     module: {
         rules: [
             {
-              test: /\.(js|jsx)$/,  // extensions that need to be transpiled
+              test: /\.(js|jsx)$/,
               exclude: [
-                  path.resolve(__dirname, 'node_modules') // and those excluded
+                  path.resolve(__dirname, 'node_modules')
               ],
               loader: 'babel-loader',
               options: {
-                  presets: ['react', 'es2015', 'stage-2']  // what transpiling
+                  presets: ['react', 'es2015', 'stage-2']
               }
             },
             {
-                test: /\.scss$/,          // transpile sass
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+                test: /\.scss$/,
+                use: [ 'style-loader', 'css-loader', 'postcss-loader', 'sass-loader' ]
             }
         ]
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.scss', '.css']
     },
-    devServer: {     // settings for webpack-dev-server  (Hot Reload Module (HRM) is active by default)
+    devServer: {
         contentBase: './',
+        inline: true,
+        hot: true,
         compress: true,
         port: 8080,
-        publicPath: 'http://localhost:8080/dist/',  // used by HRM
-        historyApiFallback: true    // used if 404 is not present
+        publicPath: 'http://localhost:8080/dist/',
+        historyApiFallback: true
     }
 };
+
+module.exports = config;
+
 ```
