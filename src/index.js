@@ -1,20 +1,16 @@
-import _ from 'lodash';
+import style from './index.css';
 
-import TestModule from './TestModule/TestModule';
+class App {
+    render() {
+        console.log(style);
+        const element = `
+            <div class="element">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>`;
 
-import './index.scss';
-
-var newEl = new TestModule();
-
-function component () {
-  var element = document.createElement('div');
-      element.setAttribute('class', 'test');
-
-  /* lodash is required for the next line to work */
-  element.innerHTML = _.join(['Hello','world'], ' ');
-
-  return element;
+        return element;
+    }
 }
 
-document.body.appendChild(component());
-document.body.appendChild(newEl.create());
+var app = new App();
+document.write(app.render());
