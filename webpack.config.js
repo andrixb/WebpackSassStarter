@@ -1,8 +1,8 @@
 const path = require('path');
-// var webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
+const extractCSS = new ExtractTextPlugin('main.css');
+const extractSCSS = new ExtractTextPlugin('styles.css');
 
 const config = {
     entry: [
@@ -24,44 +24,29 @@ const config = {
                     presets: ['react', 'es2015', 'stage-2']
                 }
             },
-            // {
-            //     test: /\.scss$/,
-            //     use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-            // }
-            // {
-            //     test: /\.scss$/,
-            //     loader: ExtractTextPlugin.extract('scss')
-            // }
-
-
+            {
+                test: /\.scss$/,
+                loader: extractSCSS.extract(['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'])
+            },
             {
                 test: /\.css$/,
                 loaders: extractCSS.extract(['css-loader', 'postcss-loader'])
             }
-            // {
-            //     test: /\.css$/,
-            //     use: ExtractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: 'css-loader'
-            //     })
-            // }
         ]
     },
     plugins: [
-        extractCSS
+        extractCSS,
+        extractSCSS
     ],
-    // resolve: {
-    //     extensions: ['.js', '.jsx', '.json', '.scss', '.css']
-    // },
-    // devServer: {
-    //     contentBase: './',
-    //     // inline: true,
-    //     hot: true,
-    //     compress: true,
-    //     port: 8080,
-    //     publicPath: 'http://localhost:8080/dist/',
-    //     historyApiFallback: true
-    // }
+    devServer: {
+        // contentBase: './',
+        // inline: true,
+        hot: true,
+        compress: true,
+        // port: 8080,
+        // publicPath: 'http://localhost:8080/dist/',
+        historyApiFallback: true
+    }
 };
 
 module.exports = config;
