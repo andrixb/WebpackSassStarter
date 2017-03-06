@@ -19,6 +19,7 @@ https://webpack.js.org/guides/hmr-react/
 TODO
 - add `style linter` (for console outputs)
 - add `html validator` (for console outputs)
+- set env variables for `DEV` and `PROD`
 
 - create a new repository for React FEsetup that uses HMR
 
