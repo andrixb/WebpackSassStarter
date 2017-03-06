@@ -9,14 +9,10 @@ Dependencies can be handled by **Yarn**.
 See the example in the `src` folder for a basic usage of this starter kit.
 
 TODO
-add `jest`
 add `style linter`
 add `html validator`
 
-
-# Extract Text Plugin doesn't extract style to styel.css
-
-
+HMR doesn't work properly (atm `watchContentBase` is set to `true` as a fallback)
 
 ## Usage
 `yarn`
@@ -46,13 +42,17 @@ Installed as Dev dependencies
 - `autoprefixer`
 - `eslint`
 - `eslint-plugin-import`
+- `jest`
 
 
 
 ## Webpack 2 configuration
 ```js
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractCSS = new ExtractTextPlugin('main.css');
+const extractSCSS = new ExtractTextPlugin('styles.css');
 
 const config = {
     entry: [
@@ -65,31 +65,36 @@ const config = {
     module: {
         rules: [
             {
-              test: /\.(js|jsx)$/,
-              exclude: [
-                  path.resolve(__dirname, 'node_modules')
-              ],
-              loader: 'babel-loader',
-              options: {
-                  presets: ['react', 'es2015', 'stage-2']
-              }
+                test: /\.(js|jsx)$/,
+                exclude: [
+                    path.resolve(__dirname, 'node_modules')
+                ],
+                loader: 'babel-loader',
+                options: {
+                    presets: ['react', 'es2015', 'stage-2']
+                }
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'postcss-loader', 'sass-loader' ]
+                loader: extractSCSS.extract(['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'])
+            },
+            {
+                test: /\.css$/,
+                loaders: extractCSS.extract(['css-loader', 'postcss-loader'])
             }
         ]
     },
-    resolve: {
-        extensions: ['.js', '.jsx', '.json', '.scss', '.css']
-    },
+    plugins: [
+        extractCSS,
+        extractSCSS
+    ],
     devServer: {
-        contentBase: './',
-        inline: true,
+        // contentBase: './',
+        // inline: true,
         hot: true,
         compress: true,
-        port: 8080,
-        publicPath: 'http://localhost:8080/dist/',
+        // port: 8080,
+        // publicPath: 'http://localhost:8080/dist/',
         historyApiFallback: true
     }
 };

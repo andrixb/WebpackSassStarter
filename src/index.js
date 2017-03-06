@@ -1,16 +1,23 @@
-import style from './index.css';
+import './test.css';
+import './index.scss';
 
-class App {
+import MockComponent from './MockComponent/MockComponent';
+
+export default class App {
+    constructor() {
+        this.mock = new MockComponent();
+    }
     render() {
-        console.log(style);
-        const element = `
-            <div class="element">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            </div>`;
-
-        return element;
+        return `<div class="element">${this.mock.render()}</div>`;
     }
 }
 
-var app = new App();
-document.write(app.render());
+let app = {};
+app = new App();
+const mainDiv = document.querySelector('#root');
+mainDiv.innerHTML = app.render();
+
+// Hot Module Replacement API
+if (module.hot) {
+    module.hot.accept();
+}
