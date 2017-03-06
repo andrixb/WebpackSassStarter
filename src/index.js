@@ -1,5 +1,5 @@
-import './test.css';
-import './index.scss';
+import './polyfill/reset.css';
+import './indexStyle.scss';
 
 import MockComponent from './MockComponent/MockComponent';
 

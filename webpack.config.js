@@ -2,12 +2,13 @@ const path = require('path');
 const Webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HotModuleReplacement = new Webpack.HotModuleReplacementPlugin();
+const HotModuleReplacementPlugin = new Webpack.HotModuleReplacementPlugin();
 const NamedModulesPlugin = new Webpack.NamedModulesPlugin();
 const NoEmitOnErrorsPlugin = new Webpack.NoEmitOnErrorsPlugin();
 
 const extractCSS = new ExtractTextPlugin('main.css');
 const extractSCSS = new ExtractTextPlugin('styles.css');
+
 
 const config = {
     entry: [
@@ -40,7 +41,7 @@ const config = {
                 },
             },
             {
-                test: /\.scss$/,
+                test: /\.s(a|c)ss$/,
                 loader: extractSCSS.extract({
                     fallback: 'style-loader',
                     use: ['css-loader', 'postcss-loader', 'sass-loader'],
@@ -58,7 +59,7 @@ const config = {
     plugins: [
         extractCSS,
         extractSCSS,
-        HotModuleReplacement,
+        HotModuleReplacementPlugin,
         NamedModulesPlugin,
         NoEmitOnErrorsPlugin,
     ],

@@ -1,4 +1,4 @@
-import style from './MockComponentStyle.scss';
+import './MockComponentStyle.scss';
 
 export default class MockComponent {
     render() {
