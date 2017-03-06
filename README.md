@@ -18,17 +18,17 @@ TODO
 - create a new repository for React FEsetup that uses HMR
 
 ## Usage
-`yarn` to install dependencies
+- `yarn` to install dependencies
 
-`npm run start:dev` for developing (it runs build:dev and webpack-dev-server)
-`npm run start:server` to startup webserver (for production testings)
+- `npm run start:dev` for developing (it runs build:dev and webpack-dev-server)
+- `npm run start:server` to startup webserver (for production testings)
 
-`npm run build:dev` to run a dev build
-`npm run build:prod`to run production build
+- `npm run build:dev` to run a dev build
+- `npm run build:prod`to run production build
 
-`npm run lint:js` lints javascript
-`npm run lint:css`  lints css
-`npm run lint:html` lints html
-`npm run lint` run all the linters
+- `npm run lint:js` lints javascript
+- `npm run lint:css`  lints css
+- `npm run lint:html` lints html
+- `npm run lint` run all the linters
 
-`npm test` run the test suites
+- `npm test` run the test suites
