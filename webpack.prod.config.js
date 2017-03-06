@@ -1,32 +1,29 @@
 const path = require('path');
-const Webpack = require('webpack');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HotModuleReplacementPlugin = new Webpack.HotModuleReplacementPlugin();
-const NamedModulesPlugin = new Webpack.NamedModulesPlugin();
-const NoEmitOnErrorsPlugin = new Webpack.NoEmitOnErrorsPlugin();
+const CommonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+const UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
+const AggressiveMergingPlugin = new webpack.optimize.AggressiveMergingPlugin();
+
+const DefinePlugin = new webpack.DefinePlugin({
+    'process.env': {
+        // This has effect on the react lib size
+        NODE_ENV: JSON.stringify('production'),
+    },
+});
 
 const extractCSS = new ExtractTextPlugin('main.css');
 const extractSCSS = new ExtractTextPlugin('styles.css');
 
-
 const config = {
     entry: [
-        'webpack-dev-server/client?http://localhost:8080',
-        // // bundle the client for webpack-dev-server
-        // // and connect to the provided endpoint
-        //
-        'webpack/hot/only-dev-server',
-        // bundle the client for hot reloading
-        // only- means to only hot reload for successful updates
         './src/index.js',
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
         publicPath: 'http://localhost:8080/',
-        hotUpdateChunkFilename: 'hot/hot-update.js',
-        hotUpdateMainFilename: 'hot/hot-update.json',
     },
     module: {
         rules: [
@@ -59,26 +56,11 @@ const config = {
     plugins: [
         extractCSS,
         extractSCSS,
-        HotModuleReplacementPlugin,
-        NamedModulesPlugin,
-        NoEmitOnErrorsPlugin,
+        CommonsChunkPlugin,
+        UglifyJsPlugin,
+        AggressiveMergingPlugin,
+        DefinePlugin,
     ],
-
-    devtool: 'inline-source-map',
-    devServer: {
-        publicPath: 'http://localhost:8080/',
-        contentBase: './',
-        inline: true,
-        watchContentBase: true,
-        // hot: true,
-        // compress: true,
-        // open: true,
-        port: 8080,
-        historyApiFallback: true,
-        stats: {
-            colors: true,
-        },
-    },
 };
 
 module.exports = config;
