@@ -16,7 +16,7 @@ HMR doesn't work properly (atm `watchContentBase` is set to `true` as a fallback
 
 ## Usage
 `yarn`
-`npm start`
+`npm start-dev`
 
 ## Webpack 2
 
