@@ -6,8 +6,8 @@ const HotModuleReplacementPlugin = new Webpack.HotModuleReplacementPlugin();
 const NamedModulesPlugin = new Webpack.NamedModulesPlugin();
 const NoEmitOnErrorsPlugin = new Webpack.NoEmitOnErrorsPlugin();
 
-const extractCSS = new ExtractTextPlugin('main.css');
-const extractSCSS = new ExtractTextPlugin('styles.css');
+const extractCSS = new ExtractTextPlugin('[name].main.css');
+const extractSCSS = new ExtractTextPlugin('[name].styles.css');
 
 
 const config = {
@@ -24,7 +24,7 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
-        publicPath: 'http://localhost:8080/',
+        publicPath: 'http://localhost/',
         hotUpdateChunkFilename: 'hot/hot-update.js',
         hotUpdateMainFilename: 'hot/hot-update.json',
     },
@@ -59,20 +59,16 @@ const config = {
     plugins: [
         extractCSS,
         extractSCSS,
-        HotModuleReplacementPlugin,
         NamedModulesPlugin,
         NoEmitOnErrorsPlugin,
+        HotModuleReplacementPlugin
     ],
 
     devtool: 'inline-source-map',
     devServer: {
         publicPath: 'http://localhost:8080/',
-        contentBase: './',
         inline: true,
         watchContentBase: true,
-        // hot: true,
-        // compress: true,
-        // open: true,
         port: 8080,
         historyApiFallback: true,
         stats: {
