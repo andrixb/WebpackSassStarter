@@ -68,6 +68,7 @@ const config = {
     devServer: {
         publicPath: 'http://localhost:8080/',
         inline: true,
+        // hot: true,
         watchContentBase: true,
         port: 8080,
         historyApiFallback: true,
