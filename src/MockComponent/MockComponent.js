@@ -6,7 +6,7 @@ export default class MockComponent {
     }
 }
 
-// Hot Module Replacement API
-if (module.hot) {
-    module.hot.accept();
-}
+// // Hot Module Replacement API
+// if (module.hot) {
+//     module.hot.accept();
+// }

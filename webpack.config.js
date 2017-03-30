@@ -1,28 +1,14 @@
 const path = require('path');
 const Webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const HotModuleReplacementPlugin = new Webpack.HotModuleReplacementPlugin();
-const NamedModulesPlugin = new Webpack.NamedModulesPlugin();
-const NoEmitOnErrorsPlugin = new Webpack.NoEmitOnErrorsPlugin();
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-    entry: [
-        'webpack-dev-server/client?http://localhost:8080',
-        // // bundle the client for webpack-dev-server
-        // // and connect to the provided endpoint
-        //
-        'webpack/hot/only-dev-server',
-        // bundle the client for hot reloading
-        // only- means to only hot reload for successful updates
-        './src/index.js',
-    ],
+    entry: {
+        app: './src/index.js',
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
-        publicPath: 'http://localhost/',
-        hotUpdateChunkFilename: 'hot/hot-update.js',
-        hotUpdateMainFilename: 'hot/hot-update.json',
     },
     module: {
         rules: [
@@ -38,33 +24,25 @@ const config = {
             },
             {
                 test: /\.s(a|c)ss$/,
-                loader: 'style-loader!css-loader!postcss-loader!sass-loader',
-                include: [path.resolve(__dirname, 'src')],
-            },
-            {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader!postcss-loader',
-                include: [path.resolve(__dirname, 'src')],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },
     plugins: [
-        NamedModulesPlugin,
-        NoEmitOnErrorsPlugin,
-        HotModuleReplacementPlugin,
+        new Webpack.HotModuleReplacementPlugin(),
+        new Webpack.NamedModulesPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'FE Build Setup',
+            hash: true,
+            template: './src/index.html',
+        }),
     ],
 
-    devtool: 'inline-source-map',
     devServer: {
-        publicPath: 'http://localhost:8080/',
-        inline: true,
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
         hot: true,
-        // watchContentBase: true,
-        port: 8080,
-        historyApiFallback: true,
-        stats: {
-            colors: true,
-        },
+        open: true,
     },
 };
 
