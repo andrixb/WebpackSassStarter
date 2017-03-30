@@ -1,4 +1,4 @@
-import './polyfill/reset.css';
+// import './polyfill/reset.css';
 import './indexStyle.scss';
 
 import MockComponent from './MockComponent/MockComponent';
@@ -22,7 +22,7 @@ app = new App();
 const mainDiv = document.querySelector('#root');
 mainDiv.innerHTML = app.render();
 
-// Hot Module Replacement API
-if (module.hot) {
-    module.hot.accept();
-}
+// // Hot Module Replacement API
+// if (module.hot) {
+//     module.hot.accept();
+// }

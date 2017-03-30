@@ -8,13 +8,6 @@ Dependencies can be handled by **Yarn**.
 
 See the example in the `src` folder for a basic usage of this starter kit.
 
-**HMR doesn't work properly**
-At the moment `watchContentBase` is set to `true` as a fallback
-
-http://stackoverflow.com/questions/42624778/webpack-hot-module-replacement-does-not-inject-the-updated-code?noredirect=1#comment73202885_42624778
-
-Needs to investigate into this
-https://webpack.js.org/guides/hmr-react/
 
 TODO
 - create a new repository for React FEsetup that uses HMR
