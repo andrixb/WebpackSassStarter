@@ -6,10 +6,6 @@ const HotModuleReplacementPlugin = new Webpack.HotModuleReplacementPlugin();
 const NamedModulesPlugin = new Webpack.NamedModulesPlugin();
 const NoEmitOnErrorsPlugin = new Webpack.NoEmitOnErrorsPlugin();
 
-const extractCSS = new ExtractTextPlugin('[name].main.css');
-const extractSCSS = new ExtractTextPlugin('[name].styles.css');
-
-
 const config = {
     entry: [
         'webpack-dev-server/client?http://localhost:8080',
@@ -42,34 +38,28 @@ const config = {
             },
             {
                 test: /\.s(a|c)ss$/,
-                loader: extractSCSS.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader'],
-                }),
+                loader: 'style-loader!css-loader!postcss-loader!sass-loader',
+                include: [path.resolve(__dirname, 'src')],
             },
             {
                 test: /\.css$/,
-                loader: extractCSS.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader'],
-                }),
+                loader: 'style-loader!css-loader!postcss-loader',
+                include: [path.resolve(__dirname, 'src')],
             },
         ],
     },
     plugins: [
-        extractCSS,
-        extractSCSS,
         NamedModulesPlugin,
         NoEmitOnErrorsPlugin,
-        HotModuleReplacementPlugin
+        HotModuleReplacementPlugin,
     ],
 
     devtool: 'inline-source-map',
     devServer: {
         publicPath: 'http://localhost:8080/',
         inline: true,
-        // hot: true,
-        watchContentBase: true,
+        hot: true,
+        // watchContentBase: true,
         port: 8080,
         historyApiFallback: true,
         stats: {
