@@ -34,7 +34,7 @@ const config = {
         new HtmlWebpackPlugin({
             title: 'FE Build Setup',
             hash: true,
-            template: './src/index.html'
+            template: './src/index.html',
         }),
     ],
 
