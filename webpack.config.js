@@ -24,7 +24,7 @@ const config = {
             },
             {
                 test: /\.s(a|c)ss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
             },
         ],
     },

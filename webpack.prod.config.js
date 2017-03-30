@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const CommonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+// const CommonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 const UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
 const AggressiveMergingPlugin = new webpack.optimize.AggressiveMergingPlugin();
 
@@ -13,8 +13,8 @@ const DefinePlugin = new webpack.DefinePlugin({
     },
 });
 
-const extractCSS = new ExtractTextPlugin('main.css');
-const extractSCSS = new ExtractTextPlugin('styles.css');
+const extractCSS = new ExtractTextPlugin('[name].bundle.css');
+const extractSCSS = new ExtractTextPlugin('[name].styles.css');
 
 const config = {
     entry: [
@@ -23,7 +23,6 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
-        publicPath: 'http://localhost:8080/',
     },
     module: {
         rules: [
@@ -34,7 +33,7 @@ const config = {
                 ],
                 loader: 'babel-loader',
                 options: {
-                    presets: ['react', 'es2015', 'stage-2'],
+                    presets: ['es2015', 'stage-2'],
                 },
             },
             {
@@ -56,7 +55,7 @@ const config = {
     plugins: [
         extractCSS,
         extractSCSS,
-        CommonsChunkPlugin,
+        // CommonsChunkPlugin,
         UglifyJsPlugin,
         AggressiveMergingPlugin,
         DefinePlugin,
