@@ -38,20 +38,18 @@ const config = {
             },
             {
                 test: /\.s(a|c)ss$/,
-                loader: 'style-loader!css-loader!postcss-loader!sass-loader',
-                include: [path.resolve(__dirname, 'src')],
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader!postcss-loader',
-                include: [path.resolve(__dirname, 'src')],
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
         ],
     },
     plugins: [
-        NamedModulesPlugin,
-        NoEmitOnErrorsPlugin,
         HotModuleReplacementPlugin,
+        NamedModulesPlugin,
+        // NoEmitOnErrorsPlugin,
     ],
 
     devtool: 'inline-source-map',
