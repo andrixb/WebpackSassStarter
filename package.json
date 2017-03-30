@@ -9,7 +9,7 @@
     "clean": "rimraf ./dist/*",
     "lint:js": "eslint \"src/**/*.js\" --ignore-pattern \"node_modules\"",
     "lint:css": "stylelint \"src/**/*.scss\"",
-    "lint:html": "html-validator --file='index.html'",
+    "lint:html": "html-validator --file='index.html' --verbose",
     "lint": "npm-run-all lint:js lint:css lint:html",
     "start": "webpack-dev-server",
     "start:server": "node ./src/server.js",
