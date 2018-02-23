@@ -19,13 +19,13 @@ export default class App {
 document.addEventListener('DOMContentLoaded', () => {
     WebFont.load({
         custom: {
-            families: ['font']
+            families: ['font'],
         },
-        active: function () {
+        active: () => {
             new App();
         },
-        inactive: function () {
+        inactive: () => {
             new App();
-        }
+        },
     });
 });
