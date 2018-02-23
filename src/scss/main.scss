@@ -1,2 +1,16 @@
-@import 'vendor/reset';
-@import 'components/index';
+@import 'base/reset';
+
+@import 'dev/vars';
+@import 'dev/mixins';
+
+@import 'base/typography';
+@import 'base/global';
+
+@import 'components/home';
+// @import 'parts/container';
+// @import 'parts/flex';
+// @import 'parts/cta';
+// @import 'parts/coords';
+// @import 'parts/course-description';
+// @import 'parts/tab-switcher';
+// @import 'parts/colectivo';

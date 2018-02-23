@@ -1,0 +1,17 @@
+body {
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-delay: 0.5s;
+    
+    .js & {
+        opacity: 0;
+    }
+    .wf-active & {
+        opacity: 1;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
