@@ -13,7 +13,6 @@
     "lint": "npm-run-all lint:js lint:css lint:html",
     "start": "webpack-dev-server",
     "start:server": "node ./src/server.js",
-    "precommit": "npm run lint",
     "test": "jest"
   },
   "keywords": [],
