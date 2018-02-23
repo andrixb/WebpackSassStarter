@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'font';
+    src: url('../assets/fonts/title.woff2') format('woff2'), url('../assets/fonts/title.woff') format('woff');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'font';
+    src: url('../assets/fonts/body.woff2') format('woff2'), url('../assets/fonts/body.woff') format('woff');
+    font-style: normal;
+    font-weight: 400;
+}
+
+html {
+    font-size: calc(1em * .625);
+}
+
+body {
+    font-family: 'font', Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    * {
+        color: $dark;
+    }
+}
+
+.headline {
+    font-weight: 700;
+    font-size: 6rem;
+    padding: .4em 0;
+    @include mq(small) {
+        display: flex;
+        font-size: 9rem;
+    }
+}
+
+a {
+    text-decoration: none;
+}
