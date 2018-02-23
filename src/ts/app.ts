@@ -1,9 +1,8 @@
 import '../scss/main.scss';
 // const sprite = require.context('../svg/sprite', false, /\.svg$/);
 // sprite.keys().forEach(sprite);
-import WebFont from 'webfontloader';
 
-import MockComponent from './mock-component';
+import MockComponent from './mock-component/index';
 
 export default class App {
     constructor() {
@@ -11,21 +10,11 @@ export default class App {
         this.init();
     }
 
-    init() {
+    init(): void {
         new MockComponent();
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    WebFont.load({
-        custom: {
-            families: ['font'],
-        },
-        active: () => {
-            new App();
-        },
-        inactive: () => {
-            new App();
-        },
-    });
+    new App();   
 });

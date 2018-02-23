@@ -1,13 +1,9 @@
-'use strict';
-
-class MockComponent {
+export default class MockComponent {
     constructor() {
         this.init();
     }
 
-    init() {
+    init(): void {
         console.log('hi');
     }
 }
-
-module.exports = MockComponent;
