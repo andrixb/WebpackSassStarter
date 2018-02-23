@@ -10,5 +10,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('Example app listening on port 3000!'); // eslint-disable-line
+    console.log('App listening on port 3000!'); // eslint-disable-line
 });
